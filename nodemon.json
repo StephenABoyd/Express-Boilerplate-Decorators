@@ -1,0 +1,7 @@
+{
+  "ignore": [
+    "**/*.spec.ts",
+    "node_modules"
+  ],
+  "exec": "npm run build && npm start"
+}
