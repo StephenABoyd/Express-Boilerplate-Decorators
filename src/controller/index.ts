@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import RouterHelper from '../utils/RouterHelper';
+import RouterHelper from '@ornate/express';
 import TestController from './TestController';
 
 export default function registerControllers(): Router {

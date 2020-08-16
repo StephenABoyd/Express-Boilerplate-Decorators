@@ -1,10 +1,20 @@
 import request from 'supertest';
+import { Express } from 'express';
 
-import Application from '../Application';
-
-const service = new Application().service;
+import { AppTest } from '@ornate/express/lib/testing';
+import TestController from './TestController';
 
 describe('Integration - TestController', () => {
+
+  let service: Express;
+
+  beforeEach(() => {
+    service = AppTest({
+      router: TestController,
+      middlewares: []
+    });
+  });
+
   it('(GET) /methods/test - should return success message', async () => {
     const response = await request(service).get('/methods/test');
     expect(response.status).toBe(200);
