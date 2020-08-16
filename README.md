@@ -1,6 +1,8 @@
 # Service Boilerplate
 #### Boilerplate project using `@ornate/express` for TypeScript decorated routes
 
+## [@ornate/express](https://github.com/ornatejs/express)
+
 ## Getting Started
 ### Running the service
 Run the following commands:
