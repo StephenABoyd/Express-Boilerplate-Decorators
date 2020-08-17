@@ -1,14 +1,20 @@
-import { Request, Response, NextFunction } from 'express';
+import { ClassMiddleware, Controller, Delete, Get, Middleware, Options, Patch, Post, Put } from '@ornate/express';
+import { NextFunction, Request, Response } from 'express';
 
-import { Controller, Delete, Get, Options, Patch, Post, Put, Middleware, ClassMiddleware } from '@ornate/express'
-import Logger from '../utils/Logger';
-import TestService from '../service/TestService';
 import { addSomeValue, logBody } from '../middleware/TestMiddleware';
+import TestService from '../service/TestService';
+import Logger from '../utils/Logger';
 
 @Controller('/methods')
 @ClassMiddleware((req: Request, res: Response, next: NextFunction) => {
   (req as any).dbConnectionString = 'testDbConnection';
-  next();
+  if (req.body.throwError) {
+    res.status(500).json({
+      error: true
+    });
+  } else {
+    next();
+  }
 })
 export default class TestController {
 
@@ -18,13 +24,13 @@ export default class TestController {
   @Middleware(addSomeValue)
   getTest(request: Request, response: Response) {
     Logger.info(request.someValue);
-    this.testService.returnSuccess(request, response, 'Get');
+    response.send(request.someValue);
   }
 
   @Post('/test')
   @Middleware(logBody)
   postTest(request: Request, response: Response) {
-    this.testService.returnSuccess(request, response, 'Post');
+    response.json(request.body);
   }
 
   @Delete('/test')

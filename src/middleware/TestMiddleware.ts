@@ -1,5 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import Logger from "../utils/Logger";
+import { NextFunction, Request, Response } from 'express';
+
+import Logger from '../utils/Logger';
 
 const addSomeValue = (request: Request, response: Response, next: NextFunction) => {
   request.someValue = 'test';
@@ -8,6 +9,7 @@ const addSomeValue = (request: Request, response: Response, next: NextFunction) 
 
 const logBody = (request: Request, response: Response, next: NextFunction) => {
   Logger.info(request.body);
+  request.body.id = '123';
   next();
 };
 

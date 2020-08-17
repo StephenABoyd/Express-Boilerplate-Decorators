@@ -1,7 +1,7 @@
-import request from 'supertest';
-import { Express } from 'express';
-
 import { AppTest } from '@ornate/express/lib/testing';
+import { Express } from 'express';
+import request from 'supertest';
+
 import TestController from './TestController';
 
 describe('Integration - TestController', () => {
